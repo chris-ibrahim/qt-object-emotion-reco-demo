@@ -85,7 +85,8 @@ class NodeGame():
                     self.old_action = new_action
                     
                     ##START Commands##
-                    if image_id == '1' :
+                    if image_id == 1 :
+                        rospy.loginfo("Action 1 initiated ...........")
                         self.face_and_sound_call("ava_talking", 1)
                         v_gesture = "bye_bye_gesture"
                         self.gesture_player_pub.publish(v_gesture)
@@ -93,16 +94,21 @@ class NodeGame():
                         self.face_and_sound_call("ava_happy", "NOSOUND")
                         self.face_and_sound_call("ava_talking", 3)
                         self.face_and_sound_call("ava_talking", 4)
-                    elif image_id == '2' :
+                        rospy.loginfo("Action 1 ended ...........")
+                    elif image_id == 2 :
+                        rospy.loginfo("Action 1 initiated ...........")
                         self.face_and_sound_call("ava_talking", 5)
                         self.face_and_sound_call("ava_surprise", "NOSOUND")
-                    elif image_id == '3' :
+                        rospy.loginfo("Action 1 ended ...........")
+                    elif image_id == 3 :
+                        rospy.loginfo("Action 1 initiated ...........")
                         self.face_and_sound_call("ava_talking", 6)
                         v_gesture = "bye_bye_gesture"
                         self.gesture_player_pub.publish(v_gesture)
                         self.face_and_sound_call("ava_talking", 7)
                         self.face_and_sound_call("ava_talking", 8)
                         self.face_and_sound_call("ava_sad", 9)
+                        rospy.loginfo("Action 1 ended ...........")
                     
                     ##END Commands##
                     
@@ -139,7 +145,7 @@ class NodeGame():
         self.voice_pub = rospy.Publisher('/robot/voice', String, queue_size=10)
         self.play_sound_pub = rospy.Publisher('/qt_playsound/play_song', String, queue_size=10)
         self.gesture_player_pub = rospy.Publisher('/qt_movement/playGestureFromFile', String, queue_size=10)
-        # self.emotion_generation_pub = rospy.Publisher('/qt_face/setEmotion', String, queue_size=10)
+        self.emotion_generation_pub = rospy.Publisher('/qt_face/setEmotion', String, queue_size=10)
         
         rospy.loginfo("Starting QT Basic game")
         
