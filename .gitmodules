@@ -1,0 +1,3 @@
+[submodule "qt_dialog"]
+	path = qt_dialog
+	url = https://github.com/AIRobolab-unilu/qt_dialog
