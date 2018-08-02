@@ -51,14 +51,17 @@ class NodeGame():
     def face_and_sound_call(self,face, audio):
         print ("trying to call the service")
 
-        rospy.wait_for_service('ChangeQTFace')
+        # rospy.wait_for_service('ChangeQTFace')
+        rospy.wait_for_service('call_new_face')
         try:
-            call_new_face = rospy.ServiceProxy('ChangeQTFace', ChangeQTFace)
+            # call_new_face = rospy.ServiceProxy('ChangeQTFace', ChangeQTFace)
+            call_new_face = rospy.ServiceProxy('call_new_face', ChangeQTFace)
             self.play_sound_pub.publish(str(audio))
             resp1 = call_new_face(face,str(audio),0)
-            print resp1
+            print 'success equals {}'.format(resp1)
         except rospy.ServiceException, e:
-            print "Service call failed: %s"%e
+            # print "Service call failed: %s"%e
+            print "Service call failed: {}".e
         
         
     def objectCallback(self, data):
@@ -96,19 +99,19 @@ class NodeGame():
                         self.face_and_sound_call("ava_talking", 4)
                         rospy.loginfo("Action 1 ended ...........")
                     elif image_id == 2 :
-                        rospy.loginfo("Action 1 initiated ...........")
+                        rospy.loginfo("Action 2 initiated ...........")
                         self.face_and_sound_call("ava_talking", 5)
                         self.face_and_sound_call("ava_surprise", "NOSOUND")
-                        rospy.loginfo("Action 1 ended ...........")
+                        rospy.loginfo("Action 2 ended ...........")
                     elif image_id == 3 :
-                        rospy.loginfo("Action 1 initiated ...........")
+                        rospy.loginfo("Action 3 initiated ...........")
                         self.face_and_sound_call("ava_talking", 6)
                         v_gesture = "bye_bye_gesture"
                         self.gesture_player_pub.publish(v_gesture)
                         self.face_and_sound_call("ava_talking", 7)
                         self.face_and_sound_call("ava_talking", 8)
                         self.face_and_sound_call("ava_sad", 9)
-                        rospy.loginfo("Action 1 ended ...........")
+                        rospy.loginfo("Action 3 ended ...........")
                     
                     ##END Commands##
                     
